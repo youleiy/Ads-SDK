@@ -47,7 +47,7 @@ public class Request {
 	private void initConfig() {
 		config = ConfigFactory.getConfig();
 		SERVICE_DOMAIN = config.readString("SERVICE_DOMAIN", "http://sandbox.sdk.admobclick.com/");
-		GET_AD_APIPATH = config.readString("GET_AD_APIPATH", "api/promote/ads");
+		GET_AD_APIPATH = config.readString("GET_AD_APIPATH", "v1/promote/ads");
 		POST_BACK_RETRY_COUNT = config.readInteger("POST_BACK_RETRY_COUNT", 3);
 		// Log.i("SERVICE_DOMAIN", SERVICE_DOMAIN);
 		// Log.i("GET_AD_APIPATH", GET_AD_APIPATH);

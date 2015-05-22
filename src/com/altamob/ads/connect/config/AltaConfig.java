@@ -14,7 +14,7 @@ import com.altamob.ads.connect.util.HttpUtil;
 
 public class AltaConfig implements Config {
 
-	private static final String CONFIG_URL = "http://demo2873601.mockable.io/config.json";
+	private static final String CONFIG_URL = "http://cdn.admobclick.com/sdk_config.json";
 
 	@Override
 	public String readString(String key, String defaultValue) {
