@@ -87,11 +87,11 @@ public class AltaBannerAdView extends RelativeLayout implements Ad, OnClickListe
 			requestPicHeight = 96;
 			webview.loadUrl(BANNER_AD_URL);
 			break;
-		case BANNER_HEIGHT_90:
-			requestPicWidth = 128;
-			requestPicHeight = 128;
-			webview.loadUrl(BANNER_AD_URL);
-			break;
+//		case BANNER_HEIGHT_90:
+//			requestPicWidth = 128;
+//			requestPicHeight = 128;
+//			webview.loadUrl(BANNER_AD_URL);
+//			break;
 		case RECTANGLE_HEIGHT_250:
 			requestPicWidth = 1024;
 			requestPicHeight = 768;

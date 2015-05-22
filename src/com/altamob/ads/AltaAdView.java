@@ -264,8 +264,8 @@ public class AltaAdView extends RelativeLayout implements Ad {
 		switch (size) {
 		case BANNER_HEIGHT_50:
 			return AdSize.BANNER_HEIGHT_50;
-		case BANNER_HEIGHT_90:
-			return AdSize.BANNER_HEIGHT_90;
+//		case BANNER_HEIGHT_90:
+//			return AdSize.BANNER_HEIGHT_90;
 		case RECTANGLE_HEIGHT_250:
 			return AdSize.RECTANGLE_HEIGHT_250;
 		default:
