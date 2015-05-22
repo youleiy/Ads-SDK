@@ -36,18 +36,28 @@ public class BuildJsonUtil {
 				try {
 					JSONObject result = ads.getJSONObject(i);
 					ResultAd resultAd = new ResultAd();
-					resultAd.setClick_url(convertJson2String(result.getString("click_url")));
-					resultAd.setLogo(convertJson2String(result.getString("logo")));
-					resultAd.setImpression_url(convertJson2String(result.getString("impression_url")));
-					resultAd.setDescription(convertJson2String(result.getString("description")));
-					resultAd.setRating(convertJson2String(result.getString("rating")));
-					resultAd.setTitle(convertJson2String(result.getString("title")));
-					resultAd.setTransaction_id(convertJson2String(result.getString("transaction_id")));
-					resultAd.setPlacement_id(convertJson2String(result.getString("placement_id")));
-					resultAd.setSource(convertJson2String(result.getString("source")));
-					resultAd.setBid(convertJson2String(result.getString("bid")));
 					if (result.has("display_style"))
 						resultAd.setDisplay_style(convertJson2String(result.getString("display_style")));
+					if (result.has("click_url"))
+						resultAd.setClick_url(convertJson2String(result.getString("click_url")));
+					if (result.has("logo"))
+						resultAd.setLogo(convertJson2String(result.getString("logo")));
+					if (result.has("impression_url"))
+						resultAd.setImpression_url(convertJson2String(result.getString("impression_url")));
+					if (result.has("description"))
+						resultAd.setDescription(convertJson2String(result.getString("description")));
+					if (result.has("rating") && !result.getString("rating").equals("null"))
+						resultAd.setRating(convertJson2String(result.getString("rating")));
+					if (result.has("title"))
+						resultAd.setTitle(convertJson2String(result.getString("title")));
+					if (result.has("transaction_id"))
+						resultAd.setTransaction_id(convertJson2String(result.getString("transaction_id")));
+					if (result.has("placement_id"))
+						resultAd.setPlacement_id(convertJson2String(result.getString("placement_id")));
+					if (result.has("source"))
+						resultAd.setSource(convertJson2String(result.getString("source")));
+					if (result.has("bid") && !result.getString("bid").equals("null"))
+						resultAd.setBid(convertJson2String(result.getString("bid")));
 					if (result.has("week"))
 						resultAd.setWeek(convertJson2String(result.getString("week")));
 					if (result.has("like_count"))
@@ -60,13 +70,14 @@ public class BuildJsonUtil {
 						resultAd.setAuthor(convertJson2String(result.getString("author")));
 					if (result.has("category"))
 						resultAd.setCategory(result.getJSONArray("category").get(0).toString());
-					Creative creative = new Creative();
-					JSONObject createJsonObj = result.getJSONObject("creative");
-					creative.setHeight(createJsonObj.getInt("height"));
-					creative.setWidth(createJsonObj.getInt("width"));
-					creative.setUrl(convertJson2String(createJsonObj.getString("url")));
-
-					resultAd.setCreative(creative);
+					if (result.has("creative")) {
+						JSONObject createJsonObj = result.getJSONObject("creative");
+						Creative creative = new Creative();
+						creative.setHeight(createJsonObj.getInt("height"));
+						creative.setWidth(createJsonObj.getInt("width"));
+						creative.setUrl(convertJson2String(createJsonObj.getString("url")));
+						resultAd.setCreative(creative);
+					}
 					resultAds.add(resultAd);
 				} catch (Exception e) {
 					Log.e(LOG_TAG, e.toString());
