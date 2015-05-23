@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.altamob.ads.Comment;
 import com.altamob.ads.connect.model.AdConfig;
 import com.altamob.ads.connect.model.BtnInfo;
 import com.altamob.ads.connect.model.Creative;
@@ -77,6 +78,30 @@ public class BuildJsonUtil {
 						creative.setWidth(createJsonObj.getInt("width"));
 						creative.setUrl(convertJson2String(createJsonObj.getString("url")));
 						resultAd.setCreative(creative);
+					}
+					if (result.has("comments")) {
+						JSONArray comments = result.getJSONArray("comments");
+						List<Comment> commentsList = new ArrayList<Comment>();
+						for (int j = 0; j < comments.length(); j++) {
+							Comment comment = new Comment();
+							JSONObject commentJson = comments.getJSONObject(j);
+							comment.setContent(commentJson.getString("content"));
+							comment.setHeadIcon(commentJson.getString("headIcon"));
+							if (commentJson.has("rating") && !commentJson.getString("rating").equals("null"))
+								comment.setRating(Float.valueOf(commentJson.getString("rating")));
+							comment.setUsername(commentJson.getString("username"));
+							commentsList.add(comment);
+						}
+						resultAd.setComments(commentsList);
+					}
+					if (result.has("thumbnailList")) {
+						JSONArray thumbnailList = result.getJSONArray("thumbnailList");
+						List<String> thumbnailArray = new ArrayList<String>();
+						if (thumbnailList.length() > 0)
+							for (int k = 0; k < thumbnailList.length(); k++) {
+								thumbnailArray.add(thumbnailList.getString(k));
+							}
+						resultAd.setThumbnailList(thumbnailArray.toArray(new String[] {}));
 					}
 					resultAds.add(resultAd);
 				} catch (Exception e) {

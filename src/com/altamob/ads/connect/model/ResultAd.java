@@ -1,5 +1,9 @@
 package com.altamob.ads.connect.model;
 
+import java.util.List;
+
+import com.altamob.ads.Comment;
+
 public class ResultAd extends ResultObject {
 	private static final long serialVersionUID = -8061071737265001019L;
 	private String id;
@@ -25,6 +29,24 @@ public class ResultAd extends ResultObject {
 	private String display_style;
 	private String like_count;
 	private String banner_head;
+	private List<Comment> comments;
+	private String[] thumbnailList;
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public String[] getThumbnailList() {
+		return thumbnailList;
+	}
+
+	public void setThumbnailList(String[] thumbnailList) {
+		this.thumbnailList = thumbnailList;
+	}
 
 	/**
 	 * 大小
@@ -145,8 +167,9 @@ public class ResultAd extends ResultObject {
 	@Override
 	public String toString() {
 		return "Ad [id=" + id + ", appid=" + appid + ", title=" + title + ", logo=" + logo + ", platform=" + platform + ", description="
-				+ description + ", filesize=" + filesize + ", impression_url=" + impression_url + ", click_url=" + click_url + ", min_os_version="
-				+ min_os_version + ", bid=" + bid + ", downloads=" + downloads + ", rating=" + rating + ", category=" + category + "]";
+				+ description + ", filesize=" + filesize + ", impression_url=" + impression_url + ", click_url=" + click_url
+				+ ", min_os_version=" + min_os_version + ", bid=" + bid + ", downloads=" + downloads + ", rating=" + rating + ", category="
+				+ category + "]";
 	}
 
 	public String getId() {

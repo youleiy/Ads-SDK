@@ -1,10 +1,12 @@
 package com.altamob.ads.connect;
 
+import java.io.File;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.altamob.ads.connect.config.Config;
 import com.altamob.ads.connect.config.ConfigFactory;
@@ -91,6 +93,8 @@ public class Request {
 		filter.setVersion(android.os.Build.VERSION.RELEASE);
 		filter.setHeight(height);
 		filter.setWidth(width);
+		filter.setRooted(isRooted());
+		Log.i("is rooted", String.valueOf(isRooted()));
 	}
 
 	/**
@@ -112,5 +116,24 @@ public class Request {
 		request.setToken(token);
 		request.setFilter(new Filter());
 		return request;
+	}
+
+	private boolean isRooted() {
+		return findBinary("su");
+	}
+
+	private boolean findBinary(String binaryName) {
+		boolean found = false;
+		if (!found) {
+			String[] places = { "/sbin/", "/system/bin/", "/system/xbin/", "/data/local/xbin/", "/data/local/bin/", "/system/sd/xbin/",
+					"/system/bin/failsafe/", "/data/local/" };
+			for (String where : places) {
+				if (new File(where + binaryName).exists()) {
+					found = true;
+					break;
+				}
+			}
+		}
+		return found;
 	}
 }

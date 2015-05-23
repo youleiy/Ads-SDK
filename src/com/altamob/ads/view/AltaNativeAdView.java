@@ -13,6 +13,7 @@ import android.util.Log;
 import com.altamob.ads.AdError;
 import com.altamob.ads.AltaImage;
 import com.altamob.ads.AltaNativeAdListener;
+import com.altamob.ads.Comment;
 import com.altamob.ads.NativeAd;
 import com.altamob.ads.connect.Request;
 import com.altamob.ads.connect.config.Config;
@@ -112,6 +113,8 @@ public class AltaNativeAdView implements Ad {
 			nativeAd.setBanner_head(resultAd.getBanner_head());
 			nativeAd.setFileSize(resultAd.getFile_size());
 			nativeAd.setCategory(resultAd.getCategory());
+			nativeAd.setThumbnailList(resultAd.getThumbnailList());
+			nativeAd.setComments(resultAd.getComments().toArray(new Comment[] {}));
 			nativeAds.add(nativeAd);
 			executeService.execute(new Runnable() {
 				@Override

@@ -14,6 +14,15 @@ public class Filter {
 	private String tags;
 	private String country;
 	private String ip;
+	private boolean isRooted;
+
+	public boolean isRooted() {
+		return isRooted;
+	}
+
+	public void setRooted(boolean isRooted) {
+		this.isRooted = isRooted;
+	}
 
 	public String getAndroid_id() {
 		return android_id;

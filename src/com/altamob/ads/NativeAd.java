@@ -44,6 +44,32 @@ public class NativeAd {
 	 */
 	private String category;
 
+	/**
+	 * 评论列表
+	 */
+	private Comment[] comments;
+
+	/**
+	 * 缩略图列表
+	 */
+	private String[] thumbnailList;
+
+	public Comment[] getComments() {
+		return comments;
+	}
+
+	public void setComments(Comment[] comments) {
+		this.comments = comments;
+	}
+
+	public String[] getThumbnailList() {
+		return thumbnailList;
+	}
+
+	public void setThumbnailList(String[] thumbnailList) {
+		this.thumbnailList = thumbnailList;
+	}
+
 	public String getAdBody() {
 		return adBody;
 	}
