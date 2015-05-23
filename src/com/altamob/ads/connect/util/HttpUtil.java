@@ -134,12 +134,12 @@ public class HttpUtil {
 		String result = "";
 		HttpClient httpClient = new DefaultHttpClient();
 		httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
-				ConfigFactory.getConfig().readInteger("DEFAULT_REQUEST_TIMEOUT", 20000));
+				ConfigFactory.getConfig().readInteger("DEFAULT_REQUEST_TIMEOUT", 30000));
 		if (requestTimeout > 0)
 			httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, requestTimeout);
 		else
 			httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
-					ConfigFactory.getConfig().readInteger("DEFAULT_REQUEST_TIMEOUT", 20000));
+					ConfigFactory.getConfig().readInteger("DEFAULT_REQUEST_TIMEOUT", 30000));
 		HttpGet get = new HttpGet(new URI(url));
 		if (!StringUtils.isEmpty(token))
 			get.setHeader("token", token);

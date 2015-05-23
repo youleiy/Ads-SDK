@@ -67,9 +67,11 @@ public class RequestAsyncTask {
 					}
 				} catch (IOException e) {
 					Log.e(TAG, e.toString());
+					e.printStackTrace();
 					callBack.OnFailure(AdError.NETWORK_ERROR);
 				} catch (Exception e) {
 					Log.e(TAG, e.toString());
+					e.printStackTrace();
 					callBack.OnFailure(AdError.SERVER_ERROR);
 				}
 			}
