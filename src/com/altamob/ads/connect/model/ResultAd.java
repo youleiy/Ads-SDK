@@ -12,22 +12,16 @@ public class ResultAd extends ResultObject {
 	private String logo;
 	private String platform;
 	private String description;
-	private String filesize;
 	private String impression_url;
 	private String click_url;
 	private String min_os_version;
-	private String bid;
 	private Integer downloads;
 	private String rating;
 	private Creative creative;
 	private String category;
-	private String source;
-	private String transaction_id;
-	private String placement_id;
-
-	private String week;
-	private String display_style;
-	private String like_count;
+	private String template;
+	private String group_name;
+	private String favor_count;
 	private String banner_head;
 	private List<Comment> comments;
 	private String[] thumbnailList;
@@ -55,7 +49,7 @@ public class ResultAd extends ResultObject {
 	/**
 	 * 开发者
 	 */
-	protected String author;
+	protected String developer;
 
 	public ResultAd() {
 	}
@@ -100,14 +94,6 @@ public class ResultAd extends ResultObject {
 		this.description = description;
 	}
 
-	public String getFilesize() {
-		return filesize;
-	}
-
-	public void setFilesize(String filesize) {
-		this.filesize = filesize;
-	}
-
 	public String getImpression_url() {
 		return impression_url;
 	}
@@ -130,14 +116,6 @@ public class ResultAd extends ResultObject {
 
 	public void setMin_os_version(String min_os_version) {
 		this.min_os_version = min_os_version;
-	}
-
-	public String getBid() {
-		return bid;
-	}
-
-	public void setBid(String bid) {
-		this.bid = bid;
 	}
 
 	public Integer getDownloads() {
@@ -167,9 +145,8 @@ public class ResultAd extends ResultObject {
 	@Override
 	public String toString() {
 		return "Ad [id=" + id + ", appid=" + appid + ", title=" + title + ", logo=" + logo + ", platform=" + platform + ", description="
-				+ description + ", filesize=" + filesize + ", impression_url=" + impression_url + ", click_url=" + click_url
-				+ ", min_os_version=" + min_os_version + ", bid=" + bid + ", downloads=" + downloads + ", rating=" + rating + ", category="
-				+ category + "]";
+				+ description + ", filesize=" + file_size + ", impression_url=" + impression_url + ", click_url=" + click_url
+				+ ", min_os_version=" + min_os_version + ", downloads=" + downloads + ", rating=" + rating + ", category=" + category + "]";
 	}
 
 	public String getId() {
@@ -180,68 +157,12 @@ public class ResultAd extends ResultObject {
 		this.id = id;
 	}
 
-	public String getTransaction_id() {
-		return transaction_id;
-	}
-
-	public void setTransaction_id(String transaction_id) {
-		this.transaction_id = transaction_id;
-	}
-
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
-	}
-
-	public String getPlacement_id() {
-		return placement_id;
-	}
-
-	public void setPlacement_id(String placement_id) {
-		this.placement_id = placement_id;
-	}
-
-	public String getDisplay_style() {
-		return display_style;
-	}
-
-	public void setDisplay_style(String display_style) {
-		this.display_style = display_style;
-	}
-
-	public String getLike_count() {
-		return like_count;
-	}
-
-	public void setLike_count(String like_count) {
-		this.like_count = like_count;
-	}
-
-	public String getWeek() {
-		return week;
-	}
-
-	public void setWeek(String week) {
-		this.week = week;
-	}
-
 	public String getBanner_head() {
 		return banner_head;
 	}
 
 	public void setBanner_head(String banner_head) {
 		this.banner_head = banner_head;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 	public String getFile_size() {
@@ -258,6 +179,38 @@ public class ResultAd extends ResultObject {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+
+	public String getGroup_name() {
+		return group_name;
+	}
+
+	public void setGroup_name(String group_name) {
+		this.group_name = group_name;
+	}
+
+	public String getFavor_count() {
+		return favor_count;
+	}
+
+	public void setFavor_count(String favor_count) {
+		this.favor_count = favor_count;
+	}
+
+	public String getDeveloper() {
+		return developer;
+	}
+
+	public void setDeveloper(String developer) {
+		this.developer = developer;
 	}
 
 }

@@ -37,8 +37,8 @@ public class BuildJsonUtil {
 				try {
 					JSONObject result = ads.getJSONObject(i);
 					ResultAd resultAd = new ResultAd();
-					if (result.has("display_style"))
-						resultAd.setDisplay_style(convertJson2String(result.getString("display_style")));
+					if (result.has("template"))
+						resultAd.setTemplate(convertJson2String(result.getString("template")));
 					if (result.has("click_url"))
 						resultAd.setClick_url(convertJson2String(result.getString("click_url")));
 					if (result.has("logo"))
@@ -51,33 +51,36 @@ public class BuildJsonUtil {
 						resultAd.setRating(convertJson2String(result.getString("rating")));
 					if (result.has("title"))
 						resultAd.setTitle(convertJson2String(result.getString("title")));
-					if (result.has("transaction_id"))
-						resultAd.setTransaction_id(convertJson2String(result.getString("transaction_id")));
-					if (result.has("placement_id"))
-						resultAd.setPlacement_id(convertJson2String(result.getString("placement_id")));
-					if (result.has("source"))
-						resultAd.setSource(convertJson2String(result.getString("source")));
-					if (result.has("bid") && !result.getString("bid").equals("null"))
-						resultAd.setBid(convertJson2String(result.getString("bid")));
-					if (result.has("week"))
-						resultAd.setWeek(convertJson2String(result.getString("week")));
-					if (result.has("like_count"))
-						resultAd.setLike_count(convertJson2String(result.getString("like_count")));
+					if (result.has("group_name"))
+						resultAd.setGroup_name(convertJson2String(result.getString("group_name")));
+					if (result.has("favor_count"))
+						resultAd.setFavor_count(convertJson2String(result.getString("favor_count")));
 					if (result.has("banner_head"))
 						resultAd.setBanner_head(convertJson2String(result.getString("banner_head")));
-					if (result.has("filesize"))
-						resultAd.setFile_size(convertJson2String(result.getString("filesize")));
-					if (result.has("author"))
-						resultAd.setAuthor(convertJson2String(result.getString("author")));
+					if (result.has("file_size"))
+						resultAd.setFile_size(convertJson2String(result.getString("file_size")));
+					if (result.has("developer"))
+						resultAd.setDeveloper(convertJson2String(result.getString("developer")));
 					if (result.has("category"))
-						resultAd.setCategory(result.getJSONArray("category").get(0).toString());
-					if (result.has("creative")) {
-						JSONObject createJsonObj = result.getJSONObject("creative");
+						resultAd.setCategory(result.getJSONObject("category").getString("name"));
+					if (result.has("creatives")) {
 						Creative creative = new Creative();
-						creative.setHeight(createJsonObj.getInt("height"));
-						creative.setWidth(createJsonObj.getInt("width"));
-						creative.setUrl(convertJson2String(createJsonObj.getString("url")));
+						List<String> thumbnailArray = new ArrayList<String>();
+						JSONArray creativesJsonArray = result.getJSONArray("creatives");
+						for (int z = 0; z < creativesJsonArray.length(); z++) {
+							JSONObject creativeJson = creativesJsonArray.getJSONObject(z);
+							if (creativeJson.getString("type").equals("banner")) {
+								if (creativeJson.has("height"))
+									creative.setHeight(creativeJson.getInt("height"));
+								if (creativeJson.has("width"))
+									creative.setWidth(creativeJson.getInt("width"));
+								creative.setUrl(convertJson2String(creativeJson.getString("url")));
+							} else if (creativeJson.getString("type").equals("thumbnail")) {
+								thumbnailArray.add(creativeJson.getString("url"));
+							}
+						}
 						resultAd.setCreative(creative);
+						resultAd.setThumbnailList(thumbnailArray.toArray(new String[] {}));
 					}
 					if (result.has("comments")) {
 						JSONArray comments = result.getJSONArray("comments");
@@ -86,22 +89,13 @@ public class BuildJsonUtil {
 							Comment comment = new Comment();
 							JSONObject commentJson = comments.getJSONObject(j);
 							comment.setContent(commentJson.getString("content"));
-							comment.setHeadIcon(commentJson.getString("headIcon"));
+							comment.setHeadIcon(commentJson.getString("user_icon"));
 							if (commentJson.has("rating") && !commentJson.getString("rating").equals("null"))
 								comment.setRating(Float.valueOf(commentJson.getString("rating")));
-							comment.setUsername(commentJson.getString("username"));
+							comment.setUsername(commentJson.getString("user_name"));
 							commentsList.add(comment);
 						}
 						resultAd.setComments(commentsList);
-					}
-					if (result.has("thumbnailList")) {
-						JSONArray thumbnailList = result.getJSONArray("thumbnailList");
-						List<String> thumbnailArray = new ArrayList<String>();
-						if (thumbnailList.length() > 0)
-							for (int k = 0; k < thumbnailList.length(); k++) {
-								thumbnailArray.add(thumbnailList.getString(k));
-							}
-						resultAd.setThumbnailList(thumbnailArray.toArray(new String[] {}));
 					}
 					resultAds.add(resultAd);
 				} catch (Exception e) {

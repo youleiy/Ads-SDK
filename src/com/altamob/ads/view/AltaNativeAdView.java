@@ -106,12 +106,12 @@ public class AltaNativeAdView implements Ad {
 			nativeAd.setClickUrl(resultAd.getClick_url());
 			nativeAd.setAdIcon(resultAd.getLogo());
 			nativeAd.setImpressionUrl(resultAd.getImpression_url());
-			nativeAd.setLikeCount(resultAd.getLike_count());
-			nativeAd.setDisplayStyle(resultAd.getDisplay_style());
-			nativeAd.setWeek(resultAd.getWeek());
-			nativeAd.setAuthor(resultAd.getAuthor());
+			nativeAd.setFavorCount(resultAd.getFavor_count());
+			nativeAd.setTemplate(resultAd.getTemplate());
+			nativeAd.setGroupName(resultAd.getGroup_name());
 			nativeAd.setBanner_head(resultAd.getBanner_head());
 			nativeAd.setFileSize(resultAd.getFile_size());
+			nativeAd.setDeveloper(resultAd.getDeveloper());
 			nativeAd.setCategory(resultAd.getCategory());
 			if (resultAd.getThumbnailList() != null && resultAd.getThumbnailList().length > 0)
 				nativeAd.setThumbnailList(resultAd.getThumbnailList());
@@ -132,8 +132,6 @@ public class AltaNativeAdView implements Ad {
 		Config config = ConfigFactory.getConfig();
 		NATIVE_AD_WIDTH = config.readInteger("NATIVE_AD_WIDTH", 1024);
 		NATIVE_AD_HEIGHT = config.readInteger("NATIVE_AD_HEIGHT", 768);
-		// Log.i("NATIVE_AD_WIDTH", String.valueOf(NATIVE_AD_WIDTH));
-		// Log.i("NATIVE_AD_HEIGHT", String.valueOf(NATIVE_AD_HEIGHT));
 	}
 
 	private void sendErrorMsg(AdError adError) {

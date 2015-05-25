@@ -10,8 +10,7 @@ import java.io.Serializable;
  *         if the request parameter is not present)
  *
  */
-public class Creative  implements Serializable {
-
+public class Creative implements Serializable {
 	/**
 	 * 
 	 */
@@ -29,38 +28,12 @@ public class Creative  implements Serializable {
 	 */
 	private String url;
 
-	/**
-	 * languageCode - the two-character language code
-	 */
-	private String languageCode;
-	/**
-	 * 缩略图 thumbnail - boolean value: true if this is a thumbnail image
-	 */
-	private String thumbnail;
-
-
 	public String getUrl() {
 		return url;
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public String getLanguageCode() {
-		return languageCode;
-	}
-
-	public void setLanguageCode(String languageCode) {
-		this.languageCode = languageCode;
-	}
-
-	public String getThumbnail() {
-		return thumbnail;
-	}
-
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
 	}
 
 	/*
@@ -72,8 +45,7 @@ public class Creative  implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Creative [width=" + width + ", height=" + height + ", url=" + url + ", languageCode=" + languageCode + ", thumbnail=" + thumbnail
-				+ "]";
+		return "Creative [width=" + width + ", height=" + height + ", url=" + url + "]";
 	}
 
 	public int getWidth() {

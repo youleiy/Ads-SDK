@@ -19,20 +19,20 @@ public class NativeAd {
 	/**
 	 * 开发者
 	 */
-	private String author;
+	private String developer;
 	/**
 	 * 用户点赞数量
 	 */
-	private String likeCount;
+	private String favorCount;
 	/**
 	 * App of the week
 	 */
-	private String week;
+	private String groupName;
 
 	/**
 	 * 展示样式：game_worth_try | gennel | banner
 	 */
-	private String displayStyle;
+	private String template;
 
 	/**
 	 * banner 头部图片
@@ -126,30 +126,6 @@ public class NativeAd {
 		this.impressionUrl = impressionUrl;
 	}
 
-	public String getLikeCount() {
-		return likeCount;
-	}
-
-	public void setLikeCount(String likeCount) {
-		this.likeCount = likeCount;
-	}
-
-	public String getWeek() {
-		return week;
-	}
-
-	public void setWeek(String week) {
-		this.week = week;
-	}
-
-	public String getDisplayStyle() {
-		return displayStyle;
-	}
-
-	public void setDisplayStyle(String displayStyle) {
-		this.displayStyle = displayStyle;
-	}
-
 	public String getBanner_head() {
 		return banner_head;
 	}
@@ -166,19 +142,43 @@ public class NativeAd {
 		this.fileSize = fileSize;
 	}
 
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
 	public String getCategory() {
 		return category;
 	}
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getFavorCount() {
+		return favorCount;
+	}
+
+	public void setFavorCount(String favorCount) {
+		this.favorCount = favorCount;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+
+	public String getDeveloper() {
+		return developer;
+	}
+
+	public void setDeveloper(String developer) {
+		this.developer = developer;
 	}
 }
