@@ -1,9 +1,9 @@
 -injars bin\altamobads-sdk.jar
--outjars 'C:\Users\Administrator\Desktop'
+-outjars 'C:\Users\admin\Desktop'
 
 -libraryjars libs\android-support-v4.jar
 -libraryjars libs\AudienceNetwork.jar
--libraryjars 'F:\Android\sdk\platforms\android-17\android.jar'
+-libraryjars 'C:\hyf\SDK\platforms\android-19\android.jar'
 
 -dontshrink
 -dontusemixedcaseclassnames
