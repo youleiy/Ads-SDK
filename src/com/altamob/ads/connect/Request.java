@@ -2,6 +2,7 @@ package com.altamob.ads.connect;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.StringTokenizer;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -29,6 +30,7 @@ public class Request {
 	private static String SERVICE_DOMAIN;
 	private static String GET_AD_APIPATH;
 	private static Integer POST_BACK_RETRY_COUNT;
+	private static boolean IS_CHECKROOT = false;
 
 	/**
 	 * 标记使用SDK的App
@@ -51,10 +53,7 @@ public class Request {
 		SERVICE_DOMAIN = config.readString("SERVICE_DOMAIN", "http://sandbox.sdk.admobclick.com/");
 		GET_AD_APIPATH = config.readString("GET_AD_APIPATH", "v1/promote/ads");
 		POST_BACK_RETRY_COUNT = config.readInteger("POST_BACK_RETRY_COUNT", 3);
-		// Log.i("SERVICE_DOMAIN", SERVICE_DOMAIN);
-		// Log.i("GET_AD_APIPATH", GET_AD_APIPATH);
-		// Log.i("POST_BACK_RETRY_COUNT",
-		// String.valueOf(POST_BACK_RETRY_COUNT));
+		IS_CHECKROOT = Boolean.valueOf(config.readString("IS_CHECKROOT", "false"));
 	}
 
 	public RequestAsyncTask createRequestTask(int width, int height, int requestCount, String template, CallBack callBack) {
@@ -93,7 +92,8 @@ public class Request {
 		filter.setVersion(android.os.Build.VERSION.RELEASE);
 		filter.setHeight(height);
 		filter.setWidth(width);
-		filter.setRooted(isRooted());
+		if (IS_CHECKROOT)
+			filter.setRooted(isRooted());
 		Log.i("is rooted", String.valueOf(isRooted()));
 	}
 
@@ -118,22 +118,18 @@ public class Request {
 		return request;
 	}
 
-	private boolean isRooted() {
-		return findBinary("su");
-	}
-
-	private boolean findBinary(String binaryName) {
-		boolean found = false;
-		if (!found) {
-			String[] places = { "/sbin/", "/system/bin/", "/system/xbin/", "/data/local/xbin/", "/data/local/bin/", "/system/sd/xbin/",
-					"/system/bin/failsafe/", "/data/local/" };
-			for (String where : places) {
-				if (new File(where + binaryName).exists()) {
-					found = true;
-					break;
-				}
-			}
+	public static boolean isRooted() {
+		   String path = System.getenv("PATH");
+		   if (path == null) {
+		      return false;
+		   }
+		   StringTokenizer stok = new StringTokenizer(path, ":");
+		   while (stok.hasMoreTokens()) {
+		      File su = new File(stok.nextToken(), "su");
+		      if (su.exists()) {
+		         return true;
+		      }
+		   }
+		   return false;
 		}
-		return found;
-	}
 }

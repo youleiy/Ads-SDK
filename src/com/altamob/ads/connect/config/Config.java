@@ -9,6 +9,6 @@ public interface Config {
 	Long readLong(String key, Long defaultValue);
 
 	Double readDouble(String key, Double defaultValue);
-
+	
 	boolean updateInBackground();
 }
