@@ -130,7 +130,8 @@ public class HttpUtil {
 		return result.trim();
 	}
 
-	public static String httpGet(String url, String token, int requestTimeout) throws URISyntaxException, ClientProtocolException, IOException {
+	public static String httpGet(String url, String token, int requestTimeout) throws URISyntaxException, ClientProtocolException,
+			IOException {
 		String result = "";
 		HttpClient httpClient = new DefaultHttpClient();
 		httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
@@ -165,7 +166,7 @@ public class HttpUtil {
 				ip = EntityUtils.toString(response.getEntity());
 			}
 		} catch (Exception e) {
-			Log.e(LOG_TAGS, "get ip from ipconfig error:" + e.toString());
+			Log.e(LOG_TAGS, "get config error:" + e.toString());
 		}
 		return ip;
 	}
@@ -187,7 +188,7 @@ public class HttpUtil {
 				postBack(postbackUrl, errorRetryCount - 1);
 			}
 		} catch (Exception e) {
-			Log.e(LOG_TAGS, "get ip from ipconfig error:" + e.toString());
+			Log.e(LOG_TAGS, "postback error:" + e.toString());
 		}
 	}
 

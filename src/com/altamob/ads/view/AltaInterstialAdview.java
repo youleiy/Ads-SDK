@@ -81,8 +81,6 @@ public class AltaInterstialAdview implements Ad {
 		Display display = wm.getDefaultDisplay();
 		DisplayMetrics metrics = new DisplayMetrics();
 		display.getMetrics(metrics);
-		int screenWidth = metrics.widthPixels;
-		int screenHeight = metrics.heightPixels;
 		new Request(context, placementId).createRequestTask(1200, 627, new CallBack() {
 			@Override
 			public void OnFailure(AdError adError) {

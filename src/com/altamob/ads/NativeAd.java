@@ -1,6 +1,13 @@
 package com.altamob.ads;
 
-public class NativeAd {
+import java.io.Serializable;
+
+public class NativeAd implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * NativeAd Bean
 	 */
