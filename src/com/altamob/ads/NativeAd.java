@@ -61,6 +61,11 @@ public class NativeAd implements Serializable {
 	 */
 	private String[] thumbnailList;
 
+	/**
+	 * loading等待时间
+	 */
+	private int est_loading;
+
 	public Comment[] getComments() {
 		return comments;
 	}
@@ -187,5 +192,13 @@ public class NativeAd implements Serializable {
 
 	public void setDeveloper(String developer) {
 		this.developer = developer;
+	}
+
+	public int getEst_loading() {
+		return est_loading;
+	}
+
+	public void setEst_loading(int est_loading) {
+		this.est_loading = est_loading;
 	}
 }

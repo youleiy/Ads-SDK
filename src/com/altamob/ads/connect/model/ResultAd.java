@@ -25,7 +25,8 @@ public class ResultAd extends ResultObject {
 	private String banner_head;
 	private List<Comment> comments;
 	private String[] thumbnailList;
-
+	private int est_loading;
+	
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -211,6 +212,14 @@ public class ResultAd extends ResultObject {
 
 	public void setDeveloper(String developer) {
 		this.developer = developer;
+	}
+
+	public int getEst_loading() {
+		return est_loading;
+	}
+
+	public void setEst_loading(int est_loading) {
+		this.est_loading = est_loading;
 	}
 
 }

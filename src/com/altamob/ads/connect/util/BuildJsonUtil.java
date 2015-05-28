@@ -97,6 +97,9 @@ public class BuildJsonUtil {
 						}
 						resultAd.setComments(commentsList);
 					}
+					if (result.has("est_loading")) {
+						resultAd.setEst_loading(result.getInt("est_loading"));
+					}
 					resultAds.add(resultAd);
 				} catch (Exception e) {
 					Log.e(LOG_TAG, e.toString());

@@ -1,10 +1,18 @@
 package com.altamob.ads.connect.util;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
 import org.apache.http.HttpEntity;
@@ -66,11 +74,11 @@ public class HttpUtil {
 					result = unZip(msg.getContent());
 				}
 			} else {
-				Log.e("url error ", url + "   --  " + httpResponse.toString());
+//				Log.e("url error ", url + "   --  " + httpResponse.toString());
 				result = ErrorCode.NETWORK_ERROR.toString();
 			}
 		} else {
-			Log.e("LOG_TAGS", String.format("the gzip request json %s is null", jsonFormatStr));
+//			Log.e("LOG_TAGS", String.format("the gzip request json %s is null", jsonFormatStr));
 			result = ErrorCode.SDK_ERROR.toString();
 		}
 		return result;
@@ -122,7 +130,7 @@ public class HttpUtil {
 					result = resultMsg;
 				}
 			} else {
-				Log.e("url error", httpResponse.toString());
+//				Log.e("http error", url + " --" + httpResponse.getStatusLine().getStatusCode());
 			}
 		} else {
 			Log.e(LOG_TAGS, String.format("the request json %s is null", jsonFormatStr));
@@ -151,7 +159,7 @@ public class HttpUtil {
 			// Log.i("AES", resultMsg);
 			result = resultMsg;
 		} else {
-			Log.e("url error", httpResponse.toString());
+//			Log.e("http error", url + " -- " + httpResponse.getStatusLine().getStatusCode());
 		}
 		return result.trim();
 	}
@@ -166,9 +174,50 @@ public class HttpUtil {
 				ip = EntityUtils.toString(response.getEntity());
 			}
 		} catch (Exception e) {
-			Log.e(LOG_TAGS, "get config error:" + e.toString());
+//			Log.e(LOG_TAGS, "get config error:" + e.toString());
 		}
 		return ip;
+	}
+
+	public static String GetNetIp() {
+		URL infoUrl = null;
+		InputStream inStream = null;
+		String ipLine = "";
+		HttpURLConnection httpConnection = null;
+		try {
+			infoUrl = new URL("http://ip168.com/");
+			URLConnection connection = infoUrl.openConnection();
+			httpConnection = (HttpURLConnection) connection;
+			int responseCode = httpConnection.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) {
+				inStream = httpConnection.getInputStream();
+				BufferedReader reader = new BufferedReader(new InputStreamReader(inStream, "utf-8"));
+				StringBuilder strber = new StringBuilder();
+				String line = null;
+				while ((line = reader.readLine()) != null)
+					strber.append(line + "\n");
+
+				Pattern pattern = Pattern
+						.compile("((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))");
+				Matcher matcher = pattern.matcher(strber.toString());
+				if (matcher.find()) {
+					ipLine = matcher.group();
+				}
+			}
+
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				inStream.close();
+				httpConnection.disconnect();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return ipLine;
 	}
 
 	int postbackCount = 0;

@@ -7,7 +7,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.altamob.ads.connect.config.Config;
 import com.altamob.ads.connect.config.ConfigFactory;
@@ -94,7 +93,7 @@ public class Request {
 		filter.setWidth(width);
 		if (IS_CHECKROOT)
 			filter.setRooted(isRooted());
-		Log.i("is rooted", String.valueOf(isRooted()));
+//		Log.i("is rooted", String.valueOf(isRooted()));
 	}
 
 	/**

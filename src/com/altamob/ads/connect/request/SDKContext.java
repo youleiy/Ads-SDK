@@ -104,7 +104,7 @@ public class SDKContext {
 				public void run() {
 					try {
 						// 保存Ip到本地
-						sharedPreferences.edit().putString("IP", HttpUtil.getConfig(GET_IP_URL));
+						sharedPreferences.edit().putString("IP", HttpUtil.GetNetIp());
 						// 如果上传失败则等到24小时候再上传
 						if (System.currentTimeMillis() - sharedPreferences.getLong(LAST_UPLOAD_ERROR_TIME_STR, 0) > ONE_DAY_TIME) {
 							String result = HttpUtil.httpPost(SERVICE_DOMAIN + UPLOAD_DEVICEINFO,
@@ -134,7 +134,7 @@ public class SDKContext {
 			Executors.newCachedThreadPool().execute(new Runnable() {
 				@Override
 				public void run() {
-					ip = HttpUtil.getConfig(GET_IP_URL);
+					ip = HttpUtil.GetNetIp();
 					sharedPreferences.edit().putString("IP", ip.replace("\n", "")).commit();
 				}
 			});
