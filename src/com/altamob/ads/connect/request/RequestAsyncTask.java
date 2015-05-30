@@ -87,8 +87,11 @@ public class RequestAsyncTask {
 				.append(addParams("pkg", filter.getPkg())).append(addParams("placement", filter.getPlacement()))
 				.append(addParams("platform", filter.getPlatform())).append(addParams("version", filter.getVersion()))
 				.append(addParams("width", filter.getWidth())).append(addParams("height", filter.getHeight()))
+				.append(addParams("tags", filter.getTags()))
 				.append(addParams("template", request.getTemplate())).append(addParams("limit", request.getLimit()))
-				.append(addParams("is_rooted", request.getFilter().isRooted()));
+				.append(addParams("is_rooted", request.getFilter().isRooted()))
+				.append(addParams("sdk_version", "1.0.1"));
+				;
 //		Log.i("GetURL", resultUrl.toString());
 		return resultUrl.toString().substring(0, resultUrl.length() - 1);
 	}

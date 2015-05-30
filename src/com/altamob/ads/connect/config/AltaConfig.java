@@ -14,7 +14,7 @@ import com.altamob.ads.connect.util.HttpUtil;
 
 public class AltaConfig implements Config {
 
-	private static final String CONFIG_URL = "http://cdn.admobclick.com/sdk_config.json";
+	private static final String CONFIG_URL = "http://sdk.altamob.com/config/sdk_config.json";
 
 	@Override
 	public String readString(String key, String defaultValue) {

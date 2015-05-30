@@ -78,6 +78,10 @@
     public <methods>;
 }
 
+-keep,allowshrinking public class com.altamob.ads.Comment {
+    <methods>;
+}
+
 # Also keep - Enumerations. Keep the special static methods that are required in
 # enumeration classes.
 -keepclassmembers enum  * {
