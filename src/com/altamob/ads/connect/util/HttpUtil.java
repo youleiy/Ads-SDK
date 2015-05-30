@@ -74,11 +74,14 @@ public class HttpUtil {
 					result = unZip(msg.getContent());
 				}
 			} else {
-//				Log.e("url error ", url + "   --  " + httpResponse.toString());
+				// Log.e("url error ", url + "   --  " +
+				// httpResponse.toString());
 				result = ErrorCode.NETWORK_ERROR.toString();
 			}
 		} else {
-//			Log.e("LOG_TAGS", String.format("the gzip request json %s is null", jsonFormatStr));
+			// Log.e("LOG_TAGS",
+			// String.format("the gzip request json %s is null",
+			// jsonFormatStr));
 			result = ErrorCode.SDK_ERROR.toString();
 		}
 		return result;
@@ -130,7 +133,8 @@ public class HttpUtil {
 					result = resultMsg;
 				}
 			} else {
-//				Log.e("http error", url + " --" + httpResponse.getStatusLine().getStatusCode());
+				// Log.e("http error", url + " --" +
+				// httpResponse.getStatusLine().getStatusCode());
 			}
 		} else {
 			Log.e(LOG_TAGS, String.format("the request json %s is null", jsonFormatStr));
@@ -138,8 +142,7 @@ public class HttpUtil {
 		return result.trim();
 	}
 
-	public static String httpGet(String url, String token, int requestTimeout) throws URISyntaxException, ClientProtocolException,
-			IOException {
+	public static String httpGet(String url, String token, int requestTimeout) throws URISyntaxException, ClientProtocolException, IOException {
 		String result = "";
 		HttpClient httpClient = new DefaultHttpClient();
 		httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
@@ -159,7 +162,8 @@ public class HttpUtil {
 			// Log.i("AES", resultMsg);
 			result = resultMsg;
 		} else {
-//			Log.e("http error", url + " -- " + httpResponse.getStatusLine().getStatusCode());
+			// Log.e("http error", url + " -- " +
+			// httpResponse.getStatusLine().getStatusCode());
 		}
 		return result.trim();
 	}
@@ -174,7 +178,7 @@ public class HttpUtil {
 				ip = EntityUtils.toString(response.getEntity());
 			}
 		} catch (Exception e) {
-//			Log.e(LOG_TAGS, "get config error:" + e.toString());
+			// Log.e(LOG_TAGS, "get config error:" + e.toString());
 		}
 		return ip;
 	}
@@ -211,8 +215,10 @@ public class HttpUtil {
 			e.printStackTrace();
 		} finally {
 			try {
-				inStream.close();
-				httpConnection.disconnect();
+				if (inStream != null)
+					inStream.close();
+				if (httpConnection != null)
+					httpConnection.disconnect();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
