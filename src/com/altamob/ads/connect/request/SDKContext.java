@@ -48,7 +48,6 @@ public class SDKContext {
 	private static final String LAST_UPLOAD_ERROR_TIME_STR = "LAST_UPLOAD_ERROR_TIME";
 	private static final String REQUEST_FAN_RATE_STR = "REQUEST_FAN_RATE";
 	private static final String LOCAL_TAGS = "LOCAL_TAGS";
-	private static final String GET_IP_URL = "http://ifconfig.sh";
 	private static String SERVICE_DOMAIN;
 	private static Config config;
 	private static String ip;
@@ -67,8 +66,8 @@ public class SDKContext {
 
 	private static void initConfig() {
 		config = ConfigFactory.getConfig();
-		SERVICE_DOMAIN = config.readString("SERVICE_DOMAIN", "http://10.200.10.220:8989/");
-		UPLOAD_DEVICEINFO = config.readString("UPLOAD_APIPATH", "alta-adserver/api/recommend/offer/tag.json");
+		SERVICE_DOMAIN = config.readString("SERVICE_DOMAIN", "http://sandbox.sdk.admobclick.com/");
+		UPLOAD_DEVICEINFO = config.readString("UPLOAD_APIPATH", "v1/tags");
 		/**
 		 * 间隔发送本机应用列表时间 7days
 		 */
