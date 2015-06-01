@@ -46,10 +46,12 @@ public class AltaNativeAd extends AltaAd implements Ad, AltaNativeAdListener {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
-				altAdListener.onAltaAdloaded(AltaNativeAd.this);
+				if (altAdListener != null)
+					altAdListener.onAltaAdloaded(AltaNativeAd.this);
 				break;
 			case 2:
-				altAdListener.onAltaAdError(AltaNativeAd.this, (com.altamob.ads.AdError) msg.obj);
+				if (altAdListener != null)
+					altAdListener.onAltaAdError(AltaNativeAd.this, (com.altamob.ads.AdError) msg.obj);
 				break;
 			default:
 				break;

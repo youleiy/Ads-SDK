@@ -3,8 +3,6 @@ package com.altamob.ads;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.altamob.ads.view.OnclickCallBack;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +10,12 @@ import android.net.Uri;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 
+import com.altamob.ads.connect.util.StringUtils;
+import com.altamob.ads.view.OnclickCallBack;
+
 public class x {
 	Context mContext;
 	OnclickCallBack callback;
-	ProgressDialog progressDialog;
 
 	/** Instantiate the interface and set the context */
 	public x(Context c, OnclickCallBack callBack) {
@@ -26,14 +26,17 @@ public class x {
 	/** Show a toast from the web page */
 	@JavascriptInterface
 	public void toDetail(final String clickUrl) {
-//		Log.i("WebAppInterface", "start");
-		progressDialog = new ProgressDialog(mContext);
+		final ProgressDialog progressDialog = new ProgressDialog(mContext);
 		progressDialog.setMessage("Loading...");
 		progressDialog.show();
 		callback.onClick();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				if (StringUtils.isEmpty(clickUrl)) {
+					progressDialog.dismiss();
+					return;
+				}
 				Intent browserIntent = new Intent(Intent.ACTION_VIEW);
 				browserIntent.setData(Uri.parse(getDestUrl(clickUrl)));
 				browserIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -41,7 +44,6 @@ public class x {
 				progressDialog.dismiss();
 			}
 		}).start();
-
 	}
 
 	public static String getDestUrl(String url) {
@@ -52,9 +54,11 @@ public class x {
 			conn.setInstanceFollowRedirects(false);
 			conn.connect();
 			String location = conn.getHeaderField("Location");
-//			Log.i("redirect", location);
+			if (StringUtils.isEmpty(location))
+				return url;
+			// Log.i("redirect", location);
 			if (location.startsWith("market")) {
-//				Log.i("dest", location);
+				// Log.i("dest", location);
 				return location;
 			} else {
 				return getDestUrl(location);

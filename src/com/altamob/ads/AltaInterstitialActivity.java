@@ -38,9 +38,8 @@ public class AltaInterstitialActivity extends Activity implements OnclickCallBac
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		INTERSTITIAL_AD_URL = ConfigFactory.getConfig().readString("INTERSTITIAL_AD_URL",
-				"http://cdn.admobclick.com/sdk/min/interstitial.html?date=")
-				+ Math.random();
+		INTERSTITIAL_AD_URL = ConfigFactory.getConfig()
+				.readString("INTERSTITIAL_AD_URL", "http://cdn.admobclick.com/sdk/min/interstitial.html?date=") + Math.random();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -105,7 +104,8 @@ public class AltaInterstitialActivity extends Activity implements OnclickCallBac
 			adConfig.setRating(Double.valueOf(resultAd.getRating()));
 		adConfig.setTitle(resultAd.getTitle());
 		BtnInfo btnInfo = new BtnInfo();
-		btnInfo.setHref(String.format(String.format("javascript:AdControl.toDetail('%s');", resultAd.getClick_url())));
+		System.out.println(resultAd.getClick_url());
+		btnInfo.setHref(String.format("javascript:AdControl.toDetail('');",resultAd.getClick_url() ));
 		adConfig.setBtnInfo(btnInfo);
 		return BuildJsonUtil.buildAdUnitConfig(adConfig);
 	}

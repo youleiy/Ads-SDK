@@ -72,7 +72,7 @@ public class AltaAdView extends RelativeLayout implements Ad {
 			switch (msg.what) {
 			case 1:
 				Ad_Type adType = (Ad_Type) msg.obj;
-//				Log.i("currentLoadAdtype", "Show:" + String.valueOf(adType));
+				// Log.i("currentLoadAdtype", "Show:" + String.valueOf(adType));
 				switch (adType) {
 				case FAN:
 					addSubView(facebookAdview);
@@ -219,7 +219,7 @@ public class AltaAdView extends RelativeLayout implements Ad {
 				Log.i(LOG_TAG, "altamob adView load over! time:" + loadSpend);
 
 				Executors.newCachedThreadPool().execute(new Runnable() {
-					@Override 
+					@Override
 					public void run() {
 						try {
 							synchronized (lock) {
@@ -264,8 +264,6 @@ public class AltaAdView extends RelativeLayout implements Ad {
 		switch (size) {
 		case BANNER_HEIGHT_50:
 			return AdSize.BANNER_HEIGHT_50;
-//		case BANNER_HEIGHT_90:
-//			return AdSize.BANNER_HEIGHT_90;
 		case RECTANGLE_HEIGHT_250:
 			return AdSize.RECTANGLE_HEIGHT_250;
 		default:
