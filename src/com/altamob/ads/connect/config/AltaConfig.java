@@ -1,5 +1,14 @@
 package com.altamob.ads.connect.config;
 
+import java.util.Iterator;
+import java.util.concurrent.Executors;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.SharedPreferences.Editor;
+import android.util.Log;
+
 import com.altamob.ads.connect.request.SDKContext;
 import com.altamob.ads.connect.util.HttpUtil;
 
