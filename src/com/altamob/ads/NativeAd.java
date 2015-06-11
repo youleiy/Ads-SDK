@@ -66,6 +66,8 @@ public class NativeAd implements Serializable {
 	 */
 	private int est_loading;
 
+	private String pkg;
+
 	public Comment[] getComments() {
 		return comments;
 	}
@@ -200,5 +202,13 @@ public class NativeAd implements Serializable {
 
 	public void setEst_loading(int est_loading) {
 		this.est_loading = est_loading;
+	}
+
+	public String getPkg() {
+		return pkg;
+	}
+
+	public void setPkg(String pkg) {
+		this.pkg = pkg;
 	}
 }

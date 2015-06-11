@@ -26,7 +26,8 @@ public class ResultAd extends ResultObject {
 	private List<Comment> comments;
 	private String[] thumbnailList;
 	private int est_loading;
-	
+	private String pkg;
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -146,8 +147,8 @@ public class ResultAd extends ResultObject {
 	@Override
 	public String toString() {
 		return "Ad [id=" + id + ", appid=" + appid + ", title=" + title + ", logo=" + logo + ", platform=" + platform + ", description="
-				+ description + ", filesize=" + file_size + ", impression_url=" + impression_url + ", click_url=" + click_url
-				+ ", min_os_version=" + min_os_version + ", downloads=" + downloads + ", rating=" + rating + ", category=" + category + "]";
+				+ description + ", filesize=" + file_size + ", impression_url=" + impression_url + ", click_url=" + click_url + ", min_os_version="
+				+ min_os_version + ", downloads=" + downloads + ", rating=" + rating + ", category=" + category + "]";
 	}
 
 	public String getId() {
@@ -220,6 +221,14 @@ public class ResultAd extends ResultObject {
 
 	public void setEst_loading(int est_loading) {
 		this.est_loading = est_loading;
+	}
+
+	public String getPkg() {
+		return pkg;
+	}
+
+	public void setPkg(String pkg) {
+		this.pkg = pkg;
 	}
 
 }

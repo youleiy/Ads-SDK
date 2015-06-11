@@ -63,6 +63,8 @@ public class BuildJsonUtil {
 						resultAd.setDeveloper(convertJson2String(result.getString("developer")));
 					if (result.has("category"))
 						resultAd.setCategory(result.getJSONObject("category").getString("name"));
+					if (result.has("pkg"))
+						resultAd.setPkg(convertJson2String(result.getString("pkg")));
 					if (result.has("creatives")) {
 						Creative creative = new Creative();
 						List<String> thumbnailArray = new ArrayList<String>();

@@ -114,6 +114,7 @@ public class AltaNativeAdView implements Ad {
 			nativeAd.setDeveloper(resultAd.getDeveloper());
 			nativeAd.setCategory(resultAd.getCategory());
 			nativeAd.setEst_loading(resultAd.getEst_loading());
+			nativeAd.setPkg(resultAd.getPkg());
 			if (resultAd.getThumbnailList() != null && resultAd.getThumbnailList().length > 0)
 				nativeAd.setThumbnailList(resultAd.getThumbnailList());
 			if (resultAd.getComments() != null && resultAd.getComments().size() > 0)
