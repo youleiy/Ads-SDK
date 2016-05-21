@@ -1,2 +1,0 @@
-# Altamob-SDK
-AltamobSdk
